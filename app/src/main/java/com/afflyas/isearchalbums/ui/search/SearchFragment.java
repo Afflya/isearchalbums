@@ -2,7 +2,6 @@ package com.afflyas.isearchalbums.ui.search;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,8 +114,6 @@ public class SearchFragment extends Fragment implements RetryCallback, ItemSearc
         });
 
         mViewModel.searchResult.observe(this, listResponse -> {
-            Log.d(App.DEV_TAG, getClass().getSimpleName() + ": searchResult onChanged");
-
             fragmentBinding.setSearchResponse(listResponse);
             searchAdapter.setAlbumsList(listResponse.getData());
             fragmentBinding.recyclerView.scrollToPosition(0);
@@ -141,7 +138,6 @@ public class SearchFragment extends Fragment implements RetryCallback, ItemSearc
      */
     @Override
     public void onItemClick(Album album) {
-        Log.d(App.DEV_TAG, getClass().getSimpleName() + ": search item click");
         SearchFragmentDirections.ActionSearchFragmentToAlbumFragment action = SearchFragmentDirections.actionSearchFragmentToAlbumFragment(album);
         NavHostFragment.findNavController(this).navigate(action);
     }

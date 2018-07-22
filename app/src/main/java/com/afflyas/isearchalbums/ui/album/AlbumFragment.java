@@ -2,7 +2,6 @@ package com.afflyas.isearchalbums.ui.album;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -110,7 +109,6 @@ public class AlbumFragment extends Fragment implements RetryCallback {
      *
      */
     private void subscribeUI(){
-        Log.d(App.DEV_TAG, getClass().getSimpleName() + ": subscribeUI()");
         songsAdapter = new SongsAdapter();
         fragmentBinding.recyclerView.setAdapter(songsAdapter);
 
@@ -122,8 +120,6 @@ public class AlbumFragment extends Fragment implements RetryCallback {
         }
 
         mViewModel.searchResult.observe(this, listResponse -> {
-            Log.d(App.DEV_TAG, getClass().getSimpleName() + ": searchResult onChanged");
-
             fragmentBinding.setResponse(listResponse);
             songsAdapter.setSongsList(listResponse.getData());
         });
