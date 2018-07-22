@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">iSearchAlbums</string>
+
+    <string name="search_for_albums">Search for albums</string>
+
+    <string name="empty_result">Nothing found</string>
+
+    <string name="loading_error">An error occurred while loading</string>
+
+    <string name="retry">Retry</string>
+
+    <string name="album_artwork">Album artwork</string>
+
+</resources>

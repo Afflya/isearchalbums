@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.afflyas.isearchalbums.repository.RepoResponse" />
+
+        <import type="com.afflyas.isearchalbums.repository.RepoResponseStatus" />
+
+        <variable
+            name="response"
+            type="RepoResponse" />
+
+        <variable
+            name="callback"
+            type="com.afflyas.isearchalbums.ui.common.RetryCallback" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        app:visibleGone="@{response.status != RepoResponseStatus.SUCCESS}"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            app:visibleGone="@{response.status == RepoResponseStatus.LOADING}"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadingProgressBar"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/errorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_error"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:visibleGone="@{response.status == RepoResponseStatus.ERROR}" />
+
+        <Button
+            android:id="@+id/retryButton"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> callback.retry()}"
+            android:text="@string/retry"
+            app:visibleGone="@{response.status == RepoResponseStatus.ERROR}" />
+    </LinearLayout>
+</layout>
